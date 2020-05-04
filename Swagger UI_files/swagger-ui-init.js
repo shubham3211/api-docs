@@ -300,17 +300,23 @@ window.onload = function() {
       },
       "/api/checkout": {
         "post": {
-          "description": "Complete Transaction",
+          "description": "Generate order id",
           "parameters": [
             {
               "in": "body",
               "name": "body",
-              "description": "Id of transaction",
+              "description": "payment details",
               "required": true,
               "schema": {
                 "type": "object",
                 "properties": {
-                  "transactionId": {
+                  "amount": {
+                    "type": "integer"
+                  },
+                  "currency": {
+                    "type": "string"
+                  },
+                  "receipt": {
                     "type": "integer",
                     "format": "int64"
                   }
@@ -320,18 +326,18 @@ window.onload = function() {
           ],
           "responses": {
             "200": {
-              "description": "Transaction Complete",
+              "description": "Order Id Created",
               "schema": {
                 "type": "object",
                 "properties": {
-                  "transaction": {
-                    "$ref": "#/definitions/Transaction"
+                  "orderId": {
+                    "type": "object"
                   },
                   "message": {
                     "type": "string"
                   },
-                  "done": {
-                    "type": "boolean"
+                  "clientId": {
+                    "type": "string"
                   }
                 }
               }
@@ -375,6 +381,23 @@ window.onload = function() {
           },
           "Completed": {
             "type": "boolean"
+          }
+        }
+      },
+      "Payment": {
+        "properties": {
+          "razorpay_order_id": {
+            "type": "string"
+          },
+          "razorpay_payment_id": {
+            "type": "number"
+          },
+          "razorpay_signature": {
+            "type": "string"
+          },
+          "transactionId": {
+            "type": "integer",
+            "format": "int64"
           }
         }
       },
