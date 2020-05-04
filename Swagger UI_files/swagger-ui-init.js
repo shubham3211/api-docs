@@ -300,6 +300,68 @@ window.onload = function() {
       },
       "/api/checkout": {
         "post": {
+          "description": "Complete Transaction",
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Id of transaction",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "transactionId": {
+                    "type": "integer",
+                    "format": "int64"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Transaction Complete",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "transaction": {
+                    "$ref": "#/definitions/Transaction"
+                  },
+                  "message": {
+                    "type": "string"
+                  },
+                  "done": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/verify": {
+        "get": {
+          "description": "Check if user is logged in or not",
+          "responses": {
+            "200": {
+              "description": "Is User Is Loggedin Or Not",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "message": {
+                    "type": "string"
+                  },
+                  "done": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/api/payment/order-id": {
+        "post": {
           "description": "Generate order id",
           "parameters": [
             {
@@ -338,27 +400,6 @@ window.onload = function() {
                   },
                   "clientId": {
                     "type": "string"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "/api/verify": {
-        "get": {
-          "description": "Check if user is logged in or not",
-          "responses": {
-            "200": {
-              "description": "Is User Is Loggedin Or Not",
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "message": {
-                    "type": "string"
-                  },
-                  "done": {
-                    "type": "boolean"
                   }
                 }
               }
