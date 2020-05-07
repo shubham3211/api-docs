@@ -240,7 +240,11 @@ window.onload = function() {
                     "type": "number"
                   },
                   "redirectUrl": {
-                    "type": "string"
+                    "type": "string,"
+                  },
+                  "merchantId": {
+                    "type": "integer",
+                    "format": "int64"
                   }
                 }
               }
@@ -339,27 +343,6 @@ window.onload = function() {
           }
         }
       },
-      "/api/verify": {
-        "get": {
-          "description": "Check if user is logged in or not",
-          "responses": {
-            "200": {
-              "description": "Is User Is Loggedin Or Not",
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "message": {
-                    "type": "string"
-                  },
-                  "done": {
-                    "type": "boolean"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
       "/api/payment/order-id": {
         "post": {
           "description": "Generate order id",
@@ -409,39 +392,6 @@ window.onload = function() {
       }
     },
     "definitions": {
-      "Transaction": {
-        "properties": {
-          "phone": {
-            "type": "string"
-          },
-          "price": {
-            "type": "number"
-          },
-          "redirectUrl": {
-            "type": "string"
-          },
-          "Completed": {
-            "type": "boolean"
-          }
-        }
-      },
-      "Payment": {
-        "properties": {
-          "razorpay_order_id": {
-            "type": "string"
-          },
-          "razorpay_payment_id": {
-            "type": "number"
-          },
-          "razorpay_signature": {
-            "type": "string"
-          },
-          "transactionId": {
-            "type": "integer",
-            "format": "int64"
-          }
-        }
-      },
       "Otp": {
         "properties": {
           "phone": {
@@ -501,6 +451,43 @@ window.onload = function() {
           },
           "cvv": {
             "type": "number"
+          }
+        }
+      },
+      "Transaction": {
+        "properties": {
+          "phone": {
+            "type": "string"
+          },
+          "price": {
+            "type": "number"
+          },
+          "redirectUrl": {
+            "type": "string"
+          },
+          "Completed": {
+            "type": "boolean"
+          },
+          "MerchantId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "Payment": {
+        "properties": {
+          "razorpay_order_id": {
+            "type": "string"
+          },
+          "razorpay_payment_id": {
+            "type": "number"
+          },
+          "razorpay_signature": {
+            "type": "string"
+          },
+          "transactionId": {
+            "type": "integer",
+            "format": "int64"
           }
         }
       }
